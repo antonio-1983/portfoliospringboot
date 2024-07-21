@@ -7,12 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public class Persona {   
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {   
+public class Persona {   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,5 +19,6 @@ public class Usuario {
     private String apellido;
     private String email;
     private String linkedin;
-    }  
+    private int telefono;
+    private String github;
 }
