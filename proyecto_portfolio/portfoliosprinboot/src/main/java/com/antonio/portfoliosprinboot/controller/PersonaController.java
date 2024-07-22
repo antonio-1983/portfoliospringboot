@@ -2,7 +2,10 @@ package com.antonio.portfoliosprinboot.controller;
 
 import com.antonio.portfoliosprinboot.entity.Persona;
 import com.antonio.portfoliosprinboot.service.impl.IPersonaService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -38,13 +41,22 @@ public class PersonaController {
         }
     }
 
-    @PutMapping("/buscar/{id}")
-    public String desactivarPersona(@PathVariable Long id) {
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Persona> buscarPersona(@PathVariable Long id) {
         try {
-            personaService.buscarPersona(id);
-            return "Usuario "+id;
+            Persona persona = personaService.buscarPersona(id);
+           return ResponseEntity.ok(persona);
         } catch (RuntimeException e) {
-            return e.getMessage();
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/ver")
+    public ResponseEntity<List<Persona>> verPersona(){
+        try {
+            List<Persona> personas =personaService.verPersona();
+            return ResponseEntity.ok(personas);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

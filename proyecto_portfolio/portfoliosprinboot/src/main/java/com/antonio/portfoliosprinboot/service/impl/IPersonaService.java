@@ -2,6 +2,7 @@ package com.antonio.portfoliosprinboot.service.impl;
 
 import com.antonio.portfoliosprinboot.entity.Persona;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 public interface IPersonaService {
     public List<Persona> verPersona();
