@@ -1,13 +1,13 @@
 package com.antonio.portfoliosprinboot.service;
-
 import com.antonio.portfoliosprinboot.entity.Educacion;
 import com.antonio.portfoliosprinboot.repository.EducacionRepository;
 import com.antonio.portfoliosprinboot.service.impl.IEducacionService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class EducacionService implements IEducacionService{
     
     @Autowired
@@ -44,12 +44,11 @@ public class EducacionService implements IEducacionService{
         if(educacion.getHasta() !=null){
             educacionExistente.setHasta(educacion.getHasta());
         }
+               //*********************************************
             educacionRepository.save(educacionExistente);
     } else {
-        throw new RuntimeException("Conocimiento no encontrado");
-    } 
-    //*****************************************************
-    
+        throw new RuntimeException("Educacion no encontrada");
+    }  
   }
     
     @Override
