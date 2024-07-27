@@ -15,9 +15,6 @@ public class Conocimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String empresa;
-    private String puesto;
-    private String desde;
-    private String hasta;
+    private String tecnologia;
     private Long id_persona;
 }

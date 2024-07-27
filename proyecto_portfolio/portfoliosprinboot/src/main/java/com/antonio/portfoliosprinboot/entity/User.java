@@ -11,14 +11,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Persona {   
+public class User {   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
     private String nombre;
     private String apellido;
     private String email;
     private String linkedin;
     private int telefono;
     private String github;
+    private String roles;
+    private String password;
 }

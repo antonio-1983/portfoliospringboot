@@ -1,7 +1,6 @@
 package com.antonio.portfoliosprinboot.controller;
 
-import com.antonio.portfoliosprinboot.entity.Persona;
-import com.antonio.portfoliosprinboot.service.impl.IPersonaService;
+import com.antonio.portfoliosprinboot.entity.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,17 +11,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.antonio.portfoliosprinboot.service.impl.IUserService;
 
 @RestController
-@RequestMapping("api/persona")
-public class PersonaController {
+@RequestMapping("api")
+public class UserController {
     @Autowired
-    private IPersonaService personaService;
+    private IUserService userService;
 
+    @GetMapping("/hola")
+    public String hola (){
+        return "hola mundo";
+    }
     @PostMapping("/crear")
-    public String crearPersona(@RequestBody Persona persona) {
+    public String crearUser(@RequestBody User user) {
         try {
-            personaService.crearPersona(persona);
+            userService.crearUser(user);
             return "Usuario creado exitosamente";
         }
         catch(RuntimeException e)
@@ -32,9 +36,9 @@ public class PersonaController {
     }
 
     @PutMapping("/editar/{id}")
-    public String editarPersona(@PathVariable Long id, @RequestBody Persona personaDetalles) {  
+    public String editarUser(@PathVariable Long id, @RequestBody User userDetalles) {  
         try {
-            personaService.editarPersona(id, personaDetalles);
+            userService.editarUser(id, userDetalles);
             return "Usuario editado exitosamente";
         } catch (RuntimeException e) {
             return e.getMessage();
@@ -42,19 +46,19 @@ public class PersonaController {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Persona> buscarPersona(@PathVariable Long id) {
+    public ResponseEntity<User> buscarUser(@PathVariable Long id) {
         try {
-            Persona persona = personaService.buscarPersona(id);
-           return ResponseEntity.ok(persona);
+            User user = userService.buscarUser(id);
+           return ResponseEntity.ok(user);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
     @GetMapping("/ver")
-    public ResponseEntity<List<Persona>> verPersona(){
+    public ResponseEntity<List<User>> verUser(){
         try {
-            List<Persona> personas =personaService.verPersona();
-            return ResponseEntity.ok(personas);
+            List<User> users =userService.verUser();
+            return ResponseEntity.ok(users);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }

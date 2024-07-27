@@ -27,17 +27,8 @@ public class ConocimientoService implements IConocimientoService{
     if (optionalConocimiento.isPresent()) {
         Conocimiento conocimientoExistente = optionalConocimiento.get();
         
-        if (conocimiento.getEmpresa() != null) {
-            conocimientoExistente.setEmpresa(conocimiento.getEmpresa());
-        }
-        if (conocimiento.getPuesto() != null) {
-            conocimientoExistente.setPuesto(conocimiento.getPuesto());
-        }
-        if (conocimiento.getDesde() != null) {
-            conocimientoExistente.setDesde(conocimiento.getDesde());
-        }
-        if (conocimiento.getHasta() != null) {
-            conocimientoExistente.setHasta(conocimiento.getHasta());
+        if (conocimiento.getTecnologia() != null) {
+            conocimientoExistente.setTecnologia(conocimiento.getTecnologia());
         }          
         if(conocimiento.getId_persona() !=null){
             conocimientoExistente.setId_persona(conocimiento.getId_persona());
