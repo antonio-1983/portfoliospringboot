@@ -17,4 +17,5 @@ public class Conocimiento {
     private Long id;
     private String tecnologia;
     private Long id_persona;
+    private String img_tecnologia;
 }

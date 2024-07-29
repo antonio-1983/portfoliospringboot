@@ -1,6 +1,7 @@
 package com.antonio.portfoliosprinboot.controller;
-import com.antonio.portfoliosprinboot.entity.Conocimiento;
-import com.antonio.portfoliosprinboot.service.impl.IConocimientoService;
+
+import com.antonio.portfoliosprinboot.entity.Educacion;
+import com.antonio.portfoliosprinboot.service.impl.IEducacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("api/conocimiento")
-public class ConocimientoController {
+@RequestMapping("api/educacion")
+public class EducacionController {
     @Autowired
-    private IConocimientoService conocimientoService;
+    private IEducacionService educacionService;
     @PostMapping("/crear")
-    public String crearConocimiento(@RequestBody Conocimiento conocimiento) {
+    public String crearEducacion(@RequestBody Educacion educacion) {
         try {
-            conocimientoService.crearConocimiento(conocimiento);
-            return "Conocimiento creado exitosamente";
+            educacionService.crearEducacion(educacion);
+            return "Educacion creado exitosamente";
         }
         catch(RuntimeException e)
         {
@@ -30,31 +32,32 @@ public class ConocimientoController {
     }
 
     @PutMapping("/editar/{id}")
-    public String editarConocimiento(@PathVariable Long id, @RequestBody Conocimiento conocimientoDetalles) {  
+    public String editarEducacion(@PathVariable Long id, @RequestBody Educacion educacionDetalles) {  
         try {
-            conocimientoService.editarConocimiento(id, conocimientoDetalles);
-            return "Conocimiento editado exitosamente";
+            educacionService.editarEducacion(id, educacionDetalles);
+            return "Educacion editado exitosamente";
         } catch (RuntimeException e) {
             return e.getMessage();
         }
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Conocimiento> buscarConocimiento(@PathVariable Long id) {
+    public ResponseEntity<Educacion> buscarEducacion(@PathVariable Long id) {
         try {
-            Conocimiento conocimiento = conocimientoService.buscarConocimiento(id);
-           return ResponseEntity.ok(conocimiento);
+            Educacion educacion = educacionService.buscarEducacion(id);
+           return ResponseEntity.ok(educacion);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
     @GetMapping("/ver")
-    public ResponseEntity<List<Conocimiento>> verConocimiento(){
+    public ResponseEntity<List<Educacion>> verEducaciones(){
         try {
-            List<Conocimiento> conocimientos =conocimientoService.verConocimientos();
-            return ResponseEntity.ok(conocimientos);
+            List<Educacion> educaciones =educacionService.verEducaciones();
+            return ResponseEntity.ok(educaciones);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }   
 }
+

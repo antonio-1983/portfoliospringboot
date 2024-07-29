@@ -1,6 +1,7 @@
 package com.antonio.portfoliosprinboot.controller;
-import com.antonio.portfoliosprinboot.entity.Conocimiento;
-import com.antonio.portfoliosprinboot.service.impl.IConocimientoService;
+
+import com.antonio.portfoliosprinboot.entity.Proyecto;
+import com.antonio.portfoliosprinboot.service.impl.IProyectoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/conocimiento")
-public class ConocimientoController {
+@RequestMapping("api/proyecto")
+public class ProyectoController {
     @Autowired
-    private IConocimientoService conocimientoService;
+    private IProyectoService proyectoService;
     @PostMapping("/crear")
-    public String crearConocimiento(@RequestBody Conocimiento conocimiento) {
+    public String crearProyecto(@RequestBody Proyecto proyecto) {
         try {
-            conocimientoService.crearConocimiento(conocimiento);
-            return "Conocimiento creado exitosamente";
+            proyectoService.crearProyecto(proyecto);
+            return "Proyecto creado exitosamente";
         }
         catch(RuntimeException e)
         {
@@ -30,29 +31,29 @@ public class ConocimientoController {
     }
 
     @PutMapping("/editar/{id}")
-    public String editarConocimiento(@PathVariable Long id, @RequestBody Conocimiento conocimientoDetalles) {  
+    public String editarProyecto(@PathVariable Long id, @RequestBody Proyecto proyectoDetalles) {  
         try {
-            conocimientoService.editarConocimiento(id, conocimientoDetalles);
-            return "Conocimiento editado exitosamente";
+            proyectoService.editarProyecto(id, proyectoDetalles);
+            return "Proyecto editado exitosamente";
         } catch (RuntimeException e) {
             return e.getMessage();
         }
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Conocimiento> buscarConocimiento(@PathVariable Long id) {
+    public ResponseEntity<Proyecto> buscarProyecto(@PathVariable Long id) {
         try {
-            Conocimiento conocimiento = conocimientoService.buscarConocimiento(id);
-           return ResponseEntity.ok(conocimiento);
+            Proyecto proyecto = proyectoService.buscarProyecto(id);
+           return ResponseEntity.ok(proyecto);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
     @GetMapping("/ver")
-    public ResponseEntity<List<Conocimiento>> verConocimiento(){
+    public ResponseEntity<List<Proyecto>> verProyectos(){
         try {
-            List<Conocimiento> conocimientos =conocimientoService.verConocimientos();
-            return ResponseEntity.ok(conocimientos);
+            List<Proyecto> proyectos = proyectoService.verProyectos();
+            return ResponseEntity.ok(proyectos);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }

@@ -21,4 +21,5 @@ public class Experiencia {
     private String desde;
     private String hasta;
     private Long id_persona;
+    private String img_experiencia;
 }
