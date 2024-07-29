@@ -24,5 +24,4 @@ public class User {
     private String github;
     private String roles;
     private String password;
-    private String img_user;
 }
