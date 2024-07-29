@@ -52,7 +52,7 @@ public class ProyectoController {
     @GetMapping("/ver")
     public ResponseEntity<List<Proyecto>> verProyectos(){
         try {
-            List<Proyecto> proyectos =proyectoService.verProyectos();
+            List<Proyecto> proyectos = proyectoService.verProyectos();
             return ResponseEntity.ok(proyectos);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
